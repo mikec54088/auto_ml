@@ -46,10 +46,10 @@ from evolutionary_search import EvolutionaryAlgorithmSearchCV
 
 # For handling parallelism edge cases
 def _pickle_method(m):
-    if m.im_self is None:
-        return getattr, (m.im_class, m.im_func.func_name)
+    if m.__self__ is None:
+        return getattr, (m.__class__, m.__func__.__name__)
     else:
-        return getattr, (m.im_self, m.im_func.func_name)
+        return getattr, (m.__self__, m.__func__.__name__)
 
 try:
     import copy_reg
